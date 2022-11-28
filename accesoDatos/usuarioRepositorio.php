@@ -19,18 +19,14 @@ class UsuarioRepositorio{
         }
     }
 
-    public static function getusuario($id){
+    public static function getusuario($nombre){
         try{
             
             //ejecutamos select
-            $registros=$this->conexion->query("SELECT * from `user` WHERE id=$id");
+            $registros=$this->conexion->query("SELECT * from `user` WHERE nombreUser LIKE $nombre");
             //devuelve un objeto
             while($usu=$registros->fetch(PDO::FETCH_OBJ)){
-                
-                var_dump ($usu);
-                echo '<br>';
                 return $usu;
-                
             }
     
         }catch(PDOException $p){

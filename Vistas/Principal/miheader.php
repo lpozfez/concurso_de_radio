@@ -9,6 +9,9 @@
             <li class="c-menu__item"><a href="#">Unirme</a></li>
         </ul>
         <a href="#">
+            <img src="css\imagenes\iconos\logout.png" alt="">
+        </a>
+        <a href="?menu=login">
             <img src="css\imagenes\iconos\login.png" alt="">
         </a>
     </nav>

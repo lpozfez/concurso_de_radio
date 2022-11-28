@@ -4,7 +4,8 @@ if (isset($_GET['menu'])) {
         require_once 'index.php';
     }
     if ($_GET['menu'] == "login") {
-        require_once './Vistas/Login/miautentifica.php';
+        require_once './Vistas/Login/login.php';
+        //header("Location: ./?menu=");
     }
     if ($_GET['menu'] == "cerrarsesion") {
         require_once './Vistas/Login/cerrarsesion.php';
