@@ -1,20 +1,20 @@
 <?php
 class concursoRepositorio{
-    public static function getconcursos(){
+    public function getconcursos(){
 
     }
 
-    public static function getconcurso($id){
+    public function getconcurso($id){
 
     }
 
-    public static function borraConcurso($id){
+    public function borraConcurso($id){
 
     }
 
-    public static function modificaconsurso($id){}
+    public function modificaconsurso($id){}
 
-    public static function addConcurso(Concurso $concurso){}
+    public function addConcurso(Concurso $concurso){}
 
 }
 ?>

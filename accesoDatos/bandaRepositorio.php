@@ -2,7 +2,7 @@
 class BandaRepositorio{
     private $conexion;
 
-    public static function getBandas(){
+    public function getBandas(){
         try{
             $bandas=[];
             //ejecutamos select
@@ -19,7 +19,7 @@ class BandaRepositorio{
         }
     }
 
-    public static function getBanda($id){
+    public function getBanda($id){
         try{
             
             //ejecutamos select
@@ -38,7 +38,7 @@ class BandaRepositorio{
         }
     }
 
-    public static function borraBanda(Banda $banda){
+    public function borraBanda(Banda $banda){
         $id=$banda->id;
         try{
             $resultados=$this->conexion->exec("DELETE `banda` WHERE idbanda=$id");
@@ -48,7 +48,7 @@ class BandaRepositorio{
         }
     }
 
-    public static function modificaBanda(Banda $banda){
+    public function modificaBanda(Banda $banda){
         $id=$banda->id;
         try{
             $resultados=$this->conexion->exec("UPDATE `banda` SET  nombreModo=:nombre WHERE idmodo=$id");
@@ -58,7 +58,7 @@ class BandaRepositorio{
         }
     }
 
-    public static function addBanda(Banda $banda){}
+    public function addBanda(Banda $banda){}
 }
 
 ?>

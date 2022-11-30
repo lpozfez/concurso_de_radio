@@ -1,20 +1,20 @@
 <?php
 class MensajeRepositorio{
-    public static function getMensajes(){
+    public function getMensajes(){
 
     }
 
-    public static function getMensaje($id){
+    public function getMensaje($id){
 
     }
 
-    public static function borraMensaje($id){
+    public function borraMensaje($id){
 
     }
 
-    public static function modificaMensaje($id){}
+    public function modificaMensaje($id){}
 
-    public static function addMensaje(Mensaje $mensaje){
+    public function addMensaje(Mensaje $mensaje){
         
     }
 }

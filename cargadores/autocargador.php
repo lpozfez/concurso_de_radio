@@ -7,8 +7,8 @@ function mi_autocargador($clase) {
     if(file_exists($ruta.'dwservidor/concursoRadio/clases/'.$clase.'.php')){
         require_once $ruta.'dwservidor/concursoRadio/clases/'.$clase.'.php';
 
-    }elseif(file_exists($ruta.'dwservidor/concursoRadio/helpers/'.$clase.'.php')){
-        require_once $ruta.'dwservidor/concursoRadio/helpers/'.$clase.'.php';
+    }elseif(file_exists($ruta.'dwservidor/concursoRadio/helper/'.$clase.'.php')){
+        require_once $ruta.'dwservidor/concursoRadio/helper/'.$clase.'.php';
         
     }elseif(file_exists($ruta.'dwservidor/concursoRadio/accesoDatos/'.$clase.'.php')){
         require_once $ruta.'dwservidor/concursoRadio/accesoDatos/'.$clase.'.php';

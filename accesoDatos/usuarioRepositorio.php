@@ -1,8 +1,10 @@
 <?php
+//crear para mostrarlos con Silverio listados https://www.netveloper.com/paginacion-de-registros-desde-mysql
+
 class UsuarioRepositorio{
     private $conexion;
 
-    public static function getUsuarios(){
+    public function getUsuarios(){
         try{
             $usuarios=[];
             //ejecutamos select
@@ -19,7 +21,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public static function getusuario($nombre){
+    public function getusuario($nombre){
         try{
             
             //ejecutamos select
@@ -34,7 +36,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public static function borraUsuario(Usuario $usuario){
+    public function borraUsuario(Usuario $usuario){
         $id=$usuario->id;
         try{
             $resultados=$this->conexion->exec("DELETE `user` WHERE id=$id");
@@ -44,7 +46,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public static function modificaUsuario(Usuario $usuario){
+    public function modificaUsuario(Usuario $usuario){
         $id=$usuario->id;
         try{
             $resultados=$this->conexion->exec("UPDATE `user` SET  nombre=:nombre, apellidos=:apellidos, email=:email,pass=:pass, localizador:localizador, rol:rol, imagen:imagen WHERE id=$id");
@@ -54,7 +56,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public static function addUsuario(Usuario $usuario){
+    public function addUsuario(Usuario $usuario){
         $todoOk=true;//variable para controlar el proceso
         $this->conexion->beginTransaction();//iniciamos la transacción
         //sentencia SQL
@@ -76,7 +78,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public static function addUsuarios(Array $usuarios){
+    public function addUsuarios(Array $usuarios){
         $todoOk=true;
         $this->conexion->beginTransaction();//iniciamos la transacción 
         //insert SQL

@@ -1,3 +1,8 @@
 body{
     background-color: $secundario;
+    display: grid;
+    grid-template-rows: 100px 500px 100px;
+    grid-template-areas:"head head"
+                        "main main"
+                        "foot foot";
 }

@@ -1,0 +1,17 @@
+main{
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-image: url(../imagenes/radio.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+}
+
+#cuerpo{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

@@ -1,6 +1,8 @@
 <?php
 class ModoRepositorio{
-    public static function getModos(){
+    private $conexion;
+    
+    public function getModos(){
         try{
             $modos=[];
             //ejecutamos select
@@ -17,7 +19,7 @@ class ModoRepositorio{
         }
     }
 
-    public static function getModo($id){
+    public function getModo($id){
         try{
             
             //ejecutamos select
@@ -36,7 +38,7 @@ class ModoRepositorio{
         }
     }
 
-    public static function borraModo(Modo $modo){
+    public function borraModo(Modo $modo){
         $id=$modo->id;
         try{
             $resultados=$this->conexion->exec("DELETE `modo` WHERE idmodo=$id");
@@ -46,7 +48,7 @@ class ModoRepositorio{
         }
     }
 
-    public static function modificaModo(Modo $modo){
+    public function modificaModo(Modo $modo){
         $id=$modo->id;
         try{
             $resultados=$this->conexion->exec("UPDATE `modo` SET  nombreModo=:nombre WHERE idmodo=$id");
@@ -56,7 +58,7 @@ class ModoRepositorio{
         }
     }
 
-    public static function addModo(Modo $modo){
+    public function addModo(Modo $modo){
         $todoOk=true;//variable para controlar el proceso
         $this->conexion->beginTransaction();//iniciamos la transacción
         //sentencia SQL

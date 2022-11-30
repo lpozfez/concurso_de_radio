@@ -1,7 +1,9 @@
 header{
+    grid-area: head;
     background-color: $primario;
     height: 100px;
     color: $secundario;
+    
 }
 
 #logo{

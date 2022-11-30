@@ -8,19 +8,21 @@
     <title>Asociación de radioaficionados</title>
     <link rel="stylesheet" href=".\css\estilos\main.css">
     
+    
 </head>
 
 <body>
     <?php
         require_once './Vistas/Principal/miheader.php';
     ?>
-    <section>
+
+    <main>
         <div id="cuerpo">
-        <?php
-           require_once './Vistas/Principal/mienruta.php';
-        ?>
+            <?php
+            require_once './Vistas/Principal/mienruta.php';
+            ?>
         </div>
-    </section>
+    </main>
 
     <?php
         require_once './Vistas/Principal/mifooter.php';

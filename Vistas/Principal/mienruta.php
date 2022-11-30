@@ -5,7 +5,6 @@ if (isset($_GET['menu'])) {
     }
     if ($_GET['menu'] == "login") {
         require_once './Vistas/Login/login.php';
-        //header("Location: ./?menu=");
     }
     if ($_GET['menu'] == "cerrarsesion") {
         require_once './Vistas/Login/cerrarsesion.php';
@@ -21,12 +20,9 @@ if (isset($_GET['menu'])) {
     }
     if ($_GET['menu'] == "listadovacunas") {
         require_once './Vistas/Mantenimiento/listadovacunas.php';
-     
     }
 
-    
-
-    
+     
 }
 
 //Añadir otras rutas
