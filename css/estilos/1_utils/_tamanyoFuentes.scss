@@ -1,0 +1,10 @@
+@for $i from 0 to 3{
+
+    //fontSize 0 en 16px
+    //fontSize 1 en 19.2px
+    //fontSize 2 en 23.04px
+
+    .g-fontSize-#{$i}{ 
+        font-size: unquote( getFontSize($i)+"px");
+    }
+}

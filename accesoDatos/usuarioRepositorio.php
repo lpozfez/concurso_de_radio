@@ -2,13 +2,16 @@
 //crear para mostrarlos con Silverio listados https://www.netveloper.com/paginacion-de-registros-desde-mysql
 
 class UsuarioRepositorio{
-    private $conexion;
+    
+
 
     public function getUsuarios(){
+        $con=Conexion::getConexion();
+
         try{
             $usuarios=[];
             //ejecutamos select
-            $resultado=$this->conexion->query("SELECT * from `user`");
+            $resultado=$con->query("SELECT * from `user`");
             $i=0;
             while ($registro = $resultado->fetch(PDO::FETCH_OBJ)) {
                 $usuarios.push($registro);
@@ -22,10 +25,12 @@ class UsuarioRepositorio{
     }
 
     public function getusuario($nombre){
+        $con=Conexion::getConexion();
+
         try{
             
             //ejecutamos select
-            $registros=$this->conexion->query("SELECT * from `user` WHERE nombreUser LIKE $nombre");
+            $registros=$con->query("SELECT * from `user` WHERE nombreUser LIKE $nombre");
             //devuelve un objeto
             while($usu=$registros->fetch(PDO::FETCH_OBJ)){
                 return $usu;
@@ -37,9 +42,11 @@ class UsuarioRepositorio{
     }
 
     public function borraUsuario(Usuario $usuario){
+        $con=Conexion::getConexion();
+
         $id=$usuario->id;
         try{
-            $resultados=$this->conexion->exec("DELETE `user` WHERE id=$id");
+            $resultados=$con->exec("DELETE `user` WHERE id=$id");
             return $resultados;
         }catch(e){
             echo e;
@@ -47,40 +54,56 @@ class UsuarioRepositorio{
     }
 
     public function modificaUsuario(Usuario $usuario){
+        $con=Conexion::getConexion();
+
         $id=$usuario->id;
         try{
-            $resultados=$this->conexion->exec("UPDATE `user` SET  nombre=:nombre, apellidos=:apellidos, email=:email,pass=:pass, localizador:localizador, rol:rol, imagen:imagen WHERE id=$id");
+            $resultados=$con->exec("UPDATE `user` SET  nombre=:nombre, apellidos=:apellidos, email=:email,pass=:pass, localizador:localizador, rol:rol, imagen:imagen WHERE id=$id");
             return $resultados;
         }catch(e){
             echo e;
         }
     }
 
-    public function addUsuario(Usuario $usuario){
-        $todoOk=true;//variable para controlar el proceso
-        $this->conexion->beginTransaction();//iniciamos la transacción
+    public static function addUsuario(Usuario $usuario){
+        $con=Conexion::getConexion();
         //sentencia SQL
-        $anadir='INSERT INTO `user` (`identificativo`, `nombre`,`apellidos`,`email`,`pass`,`localizador`,`rol`,`imagen`) VALUES(:nombre,:apellidos, :email,:pass, :localizador, :rol, :imagen)';
-        
-        try{
-            $anadir->bindParam(":nombre",$usuario->getNombre());
-            $anadir->bindParam(":apellidos",$usuario->getApellidos());
-            $anadir->bindParam(":email",$usuario->getEmail());
-            $anadir->bindParam(":pass",$usuario->getPass());
-            $anadir->bindParam(":localizador",$usuario->getLocalizador());
-            $anadir->bindParam(":rol",$usuario->getRol());
-            $anadir->bindParam(":imagen",$usuario->getImagen());
+        $anadir="INSERT INTO `user` (`identificativo`, `nombreUser`,`apellidos`,`email`,`password`,`localizador`,`rol`,`imagen`) VALUES(:identificativo,:nombre,:apellidos,:email,:pass,:localizador,:rol,:imagen)";
+        $consulta=$con->prepare($anadir);
 
-            $anadir->execute();
-            $this->conexion->commit();
+        $id=$usuario->getId();
+        $nom=$usuario->getNombre();
+        $aps=$usuario->getApellidos();
+        $email=$usuario->getEmail();
+        $pass=$usuario->getPass();
+        $lat=$usuario->getLatitud();
+        $long=$usuario->getLongitud();
+        $localizador=`("GeomFromText(´POINT(`.$lat.' '.$long.`)´)`;
+        $rol=$usuario->getRol();
+        $foto=$usuario->getImagen();
+
+        try{
+            $consulta->bindParam(":identificativo",$id);
+            $consulta->bindParam(":nombre",$nom);
+            $consulta->bindParam(":apellidos",$aps);
+            $consulta->bindParam(":email",$email);
+            $consulta->bindParam(":pass",$pass);
+            $consulta->bindParam(":localizador",$localizador);
+            $consulta->bindParam(":rol",$rol);
+            $consulta->bindParam(":imagen",$foto);
+
+            $consulta->execute();
+
         }catch(e){
-            $conexion->rollBack();
+            echo e;
         }
     }
 
     public function addUsuarios(Array $usuarios){
+        $con=Conexion::getConexion();
+
         $todoOk=true;
-        $this->conexion->beginTransaction();//iniciamos la transacción 
+        $con->beginTransaction();//iniciamos la transacción 
         //insert SQL
         $anadir='INSERT INTO `user` (`identificativo`, `nombre`,`apellidos`,`email`,`pass`,`localizador`,`rol`,`imagen`) VALUES(:nombre,:apellidos, :email,:pass, :localizador, :rol, :imagen)';
         
@@ -97,9 +120,9 @@ class UsuarioRepositorio{
                 //ejecutamos el insert. Devuelve el número de registros reaizados.
                 $anadir->execute();
             }
-            $this->conexion->commit();
+            $con->commit();
         }catch(e){
-            $this->conexion->rollBack();
+            $con->rollBack();
         }
     }
 

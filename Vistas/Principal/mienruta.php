@@ -14,8 +14,8 @@ if (isset($_GET['menu'])) {
         require_once './Vistas/mantenimiento/mantenimiento.php';
      
     }
-    if ($_GET['menu'] == "listadoanimales") {
-        require_once './Vistas/Mantenimiento/listadoanimales.php';
+    if ($_GET['menu'] == "registro") {
+        require_once './Vistas/Login/registro.php';
      
     }
     if ($_GET['menu'] == "listadovacunas") {

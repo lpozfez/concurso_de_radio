@@ -1,8 +1,13 @@
 <?php
-class gps{
+class Point{
     private $latitud;
     private $longitud;
 
+    function __construct ($latitud,$longitud){
+        $this->latitud=$latitud;
+        $this->longitud=$longitud;
+
+    }
     
 
     /**

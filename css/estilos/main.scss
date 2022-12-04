@@ -1,7 +1,12 @@
 @import "1_utils/reset";
 @import "1_utils/colores";
+@import "1_utils/margenes";
+@import "1_utils/padding";
+@import "1_utils/tamanyoFuentes";
+
 
 @import "2_base/globales";
+@import "2_base/general";
 
 @import "4_components/menu";
 @import "4_components/formulario";

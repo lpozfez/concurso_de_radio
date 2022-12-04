@@ -5,9 +5,26 @@ class Usuario{
     private $apellidos;
     private $email;
     private $pass;
-    private $localizador;
+    private $latitud;
+    private $longitud;
     private $imagen;
-    private $rol;
+    private $rol="usuario";
+
+    public function setAll($id,$nombre,$apellidos,$email,$pass,$latitud,$longitud,$imagen64){
+        $this->id=$id;
+        $this->nombre=$nombre;
+        $this->apellidos=$apellidos;
+        $this->email=$email;
+        $this->pass=$pass;
+        $this->latitud=$latitud;
+        $this->longitud=$longitud;
+        $this->imagen=$imagen64;
+    }
+
+    public function setId($id){
+        $this->id=$id;
+        return $this;
+    }
 
     /**
      * Get the value of id
@@ -15,16 +32,6 @@ class Usuario{
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set the value of id
-     */
-    public function setId($id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -99,23 +106,6 @@ class Usuario{
         return $this;
     }
 
-    /**
-     * Get the value of localizador
-     */
-    public function getLocalizador()
-    {
-        return $this->localizador;
-    }
-
-    /**
-     * Set the value of localizador
-     */
-    public function setLocalizador($localizador): self
-    {
-        $this->localizador = $localizador;
-
-        return $this;
-    }
 
     /**
      * Get the value of imagen
@@ -130,7 +120,7 @@ class Usuario{
      */
     public function setImagen($imagen): self
     {
-        $this->imagen = $imagen;
+        $this->imagen = base64_encode($imagen);
 
         return $this;
     }
@@ -149,6 +139,60 @@ class Usuario{
     public function setRol($rol): self
     {
         $this->rol = $rol;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pais
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * Set the value of pais
+     */
+    public function setPais($pais): self
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of latitud
+     */
+    public function getLatitud()
+    {
+        return $this->latitud;
+    }
+
+    /**
+     * Set the value of latitud
+     */
+    public function setLatitud($latitud): self
+    {
+        $this->latitud = $latitud;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of longitud
+     */
+    public function getLongitud()
+    {
+        return $this->longitud;
+    }
+
+    /**
+     * Set the value of longitud
+     */
+    public function setLongitud($longitud): self
+    {
+        $this->longitud = $longitud;
 
         return $this;
     }

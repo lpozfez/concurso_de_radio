@@ -1,0 +1,22 @@
+@for $i from 0 to 4{
+    //margen 0 en 5px
+    //margen 1 en 6px
+    //margen 2 en 7.2px
+    //margen 3 en 8.64px
+    
+    .g-margenTop-#{$i}{ 
+        margin-top: unquote( getMargin($i)+"px");
+    }
+    
+    .g-margenBottom-#{$i}{ 
+        margin-bottom: unquote( getMargin($i)+"px");
+    }
+    
+    .g-margenLeft-#{$i}{ 
+        margin-left: unquote( getMargin($i)+"px");
+    }
+    
+    .g-margenRight-#{$i}{ 
+        margin-right: unquote( getMargin($i)+"px");
+    }
+}

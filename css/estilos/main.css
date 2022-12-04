@@ -48,6 +48,142 @@ table {
   border-spacing: 0;
 }
 
+.g-margenTop-0 {
+  margin-top: getMargin(0)px;
+}
+
+.g-margenBottom-0 {
+  margin-bottom: getMargin(0)px;
+}
+
+.g-margenLeft-0 {
+  margin-left: getMargin(0)px;
+}
+
+.g-margenRight-0 {
+  margin-right: getMargin(0)px;
+}
+
+.g-margenTop-1 {
+  margin-top: getMargin(1)px;
+}
+
+.g-margenBottom-1 {
+  margin-bottom: getMargin(1)px;
+}
+
+.g-margenLeft-1 {
+  margin-left: getMargin(1)px;
+}
+
+.g-margenRight-1 {
+  margin-right: getMargin(1)px;
+}
+
+.g-margenTop-2 {
+  margin-top: getMargin(2)px;
+}
+
+.g-margenBottom-2 {
+  margin-bottom: getMargin(2)px;
+}
+
+.g-margenLeft-2 {
+  margin-left: getMargin(2)px;
+}
+
+.g-margenRight-2 {
+  margin-right: getMargin(2)px;
+}
+
+.g-margenTop-3 {
+  margin-top: getMargin(3)px;
+}
+
+.g-margenBottom-3 {
+  margin-bottom: getMargin(3)px;
+}
+
+.g-margenLeft-3 {
+  margin-left: getMargin(3)px;
+}
+
+.g-margenRight-3 {
+  margin-right: getMargin(3)px;
+}
+
+.g-padding-0 {
+  padding: getPadding(0)px;
+}
+
+.g-paddingTop-0 {
+  padding-top: getPadding(0)px;
+}
+
+.g-paddingBottom-0 {
+  padding-bottom: getPadding(0)px;
+}
+
+.g-paddingLeft-0 {
+  padding-left: getPadding(0)px;
+}
+
+.g-paddingRight-0 {
+  padding-right: getPadding(0)px;
+}
+
+.g-padding-1 {
+  padding: getPadding(1)px;
+}
+
+.g-paddingTop-1 {
+  padding-top: getPadding(1)px;
+}
+
+.g-paddingBottom-1 {
+  padding-bottom: getPadding(1)px;
+}
+
+.g-paddingLeft-1 {
+  padding-left: getPadding(1)px;
+}
+
+.g-paddingRight-1 {
+  padding-right: getPadding(1)px;
+}
+
+.g-padding-2 {
+  padding: getPadding(2)px;
+}
+
+.g-paddingTop-2 {
+  padding-top: getPadding(2)px;
+}
+
+.g-paddingBottom-2 {
+  padding-bottom: getPadding(2)px;
+}
+
+.g-paddingLeft-2 {
+  padding-left: getPadding(2)px;
+}
+
+.g-paddingRight-2 {
+  padding-right: getPadding(2)px;
+}
+
+.g-fontSize-0 {
+  font-size: getFontSize(0)px;
+}
+
+.g-fontSize-1 {
+  font-size: getFontSize(1)px;
+}
+
+.g-fontSize-2 {
+  font-size: getFontSize(2)px;
+}
+
 .c-menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -86,8 +222,9 @@ table {
 
 .c-formulario {
   width: 500px;
-  height: 200px;
+  height: auto;
   background-color: rgba(241, 247, 241, 0.6);
+  padding: 20px;
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -104,6 +241,37 @@ table {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.c-formulario--registro {
+  height: 450px;
+}
+
+.c-formulario ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-formulario ul input {
+  width: 80%;
+  height: 25px;
+}
+
+.c-formulario ul .c-boton {
+  width: 200px;
 }
 
 body {

@@ -1,0 +1,26 @@
+@for $i from 0 to 3{
+    //padding 0 en 5px
+    //padding 1 en 6px
+    //padding 2 en 7.2px
+    //padding 3 en 8.64px
+
+    .g-padding-#{$i}{ 
+        padding: unquote( getPadding($i)+"px");
+    }
+
+    .g-paddingTop-#{$i}{ 
+        padding-top: unquote( getPadding($i)+"px");
+    }
+    
+    .g-paddingBottom-#{$i}{ 
+        padding-bottom: unquote( getPadding($i)+"px");
+    }
+    
+    .g-paddingLeft-#{$i}{ 
+        padding-left: unquote( getPadding($i)+"px");
+    }
+    
+    .g-paddingRight-#{$i}{ 
+        padding-right: unquote( getPadding($i)+"px");
+    }
+}

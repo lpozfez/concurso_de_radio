@@ -1,12 +1,14 @@
 <?php
 class ModoRepositorio{
-    private $conexion;
+    
     
     public function getModos(){
+        $con=Conexion::getConexion();
+
         try{
             $modos=[];
             //ejecutamos select
-            $resultado=$this->conexion->query("SELECT * from `modo`");
+            $resultado=$con->query("SELECT * from `modo`");
             $i=0;
             while ($registro = $resultado->fetch(PDO::FETCH_OBJ)) {
                 $modos.push($registro);
@@ -20,10 +22,12 @@ class ModoRepositorio{
     }
 
     public function getModo($id){
+        $con=Conexion::getConexion();
+
         try{
             
             //ejecutamos select
-            $registros=$this->conexion->query("SELECT * from `modo` WHERE idmodo=$id");
+            $registros=$con->query("SELECT * from `modo` WHERE idmodo=$id");
             //devuelve un objeto
             while($modo=$registros->fetch(PDO::FETCH_OBJ)){
                 
@@ -39,9 +43,11 @@ class ModoRepositorio{
     }
 
     public function borraModo(Modo $modo){
+        $con=Conexion::getConexion();
+
         $id=$modo->id;
         try{
-            $resultados=$this->conexion->exec("DELETE `modo` WHERE idmodo=$id");
+            $resultados=$con->exec("DELETE `modo` WHERE idmodo=$id");
             return $resultados;
         }catch(e){
             echo e;
@@ -49,9 +55,11 @@ class ModoRepositorio{
     }
 
     public function modificaModo(Modo $modo){
+        $con=Conexion::getConexion();
+
         $id=$modo->id;
         try{
-            $resultados=$this->conexion->exec("UPDATE `modo` SET  nombreModo=:nombre WHERE idmodo=$id");
+            $resultados=$con->exec("UPDATE `modo` SET  nombreModo=:nombre WHERE idmodo=$id");
             return $resultados;
         }catch(e){
             echo e;
@@ -59,8 +67,10 @@ class ModoRepositorio{
     }
 
     public function addModo(Modo $modo){
+        $con=Conexion::getConexion();
+
         $todoOk=true;//variable para controlar el proceso
-        $this->conexion->beginTransaction();//iniciamos la transacción
+        $con->beginTransaction();//iniciamos la transacción
         //sentencia SQL
         $anadir='INSERT INTO `modo` (`nombreModo`) VALUES(:nombre)';
         
@@ -68,9 +78,9 @@ class ModoRepositorio{
             $anadir->bindParam(":nombre",$modo->getNombre());
 
             $anadir->execute();
-            $this->conexion->commit();
+            $con->commit();
         }catch(e){
-            $conexion->rollBack();
+            $con->rollBack();
         }
     }
     
