@@ -11,23 +11,30 @@
     
 </head>
 
+
+
 <body>
     <?php
-        require_once './Vistas/Principal/miheader.php';
+        if(!($_GET['menu'] == "login")){
+            require_once './Vistas/Principal/miheader.php';
+        }
     ?>
 
     <main>
         <div id="cuerpo">
             <?php
-            require_once './Vistas/Principal/mienruta.php';
+                require_once './Vistas/Principal/mienruta.php';
             ?>
         </div>
     </main>
-
+    
     <?php
-        require_once './Vistas/Principal/mifooter.php';
+        if(!($_GET['menu'] == "login")){
+            require_once './Vistas/Principal/mifooter.php';
+        }
     ?>
 
 </body>
+
 
 </html>

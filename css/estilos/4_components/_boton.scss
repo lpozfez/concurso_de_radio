@@ -1,0 +1,21 @@
+.c-boton{
+    height: 30px;
+    margin: 15px;
+    width: 300px;
+
+    background-color: $primario;
+
+    border-radius: 15px;
+    border-width: 0px;
+
+    font-size: 16px;
+    color: $secundario;
+
+    box-shadow: 0 4px 6px hsla(0,0%,.2);
+}
+
+.c-boton:hover{
+    background-color: $enfasis;
+    box-shadow: none;
+}
+

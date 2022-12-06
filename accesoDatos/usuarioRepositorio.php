@@ -5,7 +5,7 @@ class UsuarioRepositorio{
     
 
 
-    public function getUsuarios(){
+    public static function getUsuarios(){
         $con=Conexion::getConexion();
 
         try{
@@ -24,7 +24,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public function getusuario($nombre){
+    public static function getusuario($nombre){
         $con=Conexion::getConexion();
 
         try{
@@ -41,7 +41,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public function borraUsuario(Usuario $usuario){
+    public static function borraUsuario(Usuario $usuario){
         $con=Conexion::getConexion();
 
         $id=$usuario->id;
@@ -53,7 +53,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public function modificaUsuario(Usuario $usuario){
+    public static function modificaUsuario(Usuario $usuario){
         $con=Conexion::getConexion();
 
         $id=$usuario->id;
@@ -68,7 +68,7 @@ class UsuarioRepositorio{
     public static function addUsuario(Usuario $usuario){
         $con=Conexion::getConexion();
         //sentencia SQL
-        $anadir="INSERT INTO `user` (`identificativo`, `nombreUser`,`apellidos`,`email`,`password`,`localizador`,`rol`,`imagen`) VALUES(:identificativo,:nombre,:apellidos,:email,:pass,:localizador,:rol,:imagen)";
+        $anadir="INSERT INTO `user` (`identificativo`, `nombreUser`,`apellidos`,`email`,`password`,`latitud`,`longitud`,`rol`,`imagen`) VALUES(:identificativo,:nombre,:apellidos,:email,:pass, :latitud, :longitud,:rol,:imagen)";
         $consulta=$con->prepare($anadir);
 
         $id=$usuario->getId();
@@ -78,7 +78,6 @@ class UsuarioRepositorio{
         $pass=$usuario->getPass();
         $lat=$usuario->getLatitud();
         $long=$usuario->getLongitud();
-        $localizador=`("GeomFromText(´POINT(`.$lat.' '.$long.`)´)`;
         $rol=$usuario->getRol();
         $foto=$usuario->getImagen();
 
@@ -88,7 +87,8 @@ class UsuarioRepositorio{
             $consulta->bindParam(":apellidos",$aps);
             $consulta->bindParam(":email",$email);
             $consulta->bindParam(":pass",$pass);
-            $consulta->bindParam(":localizador",$localizador);
+            $consulta->bindParam(":latitud",$lat);
+            $consulta->bindParam(":longitud",$long);
             $consulta->bindParam(":rol",$rol);
             $consulta->bindParam(":imagen",$foto);
 
@@ -99,7 +99,7 @@ class UsuarioRepositorio{
         }
     }
 
-    public function addUsuarios(Array $usuarios){
+    public static function addUsuarios(Array $usuarios){
         $con=Conexion::getConexion();
 
         $todoOk=true;

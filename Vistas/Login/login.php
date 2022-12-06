@@ -1,17 +1,21 @@
 <?php
 if(isset($_POST['entrar'])){
+
+
     $username=$_POST['nombre'];
     $passworld=$_POST['pass'];
 
-    $usuRepo=new UsuarioRepositorio();
-    $usuRepo->getusuario($username);
-    $usuRepo=$usuRepo->getNombre();
+    $usuRepo::getusuario($username);
 
-    var_dump ($usuRepo);
+    if($username===$usuRepo){
+        Sesion::iniciar();
+        Sesion::leer($username);
+    }
+
+
 
     
 }
-
 ?>
 
     <form action="?login.php" method="post" class="c-formulario">
@@ -19,5 +23,5 @@ if(isset($_POST['entrar'])){
         <input type="text" name="nombre" id="nombre" /><br>
         <label for="pass">Contraseña:</label>
         <input type="text" name="pass" id="pass"/><br>
-        <input type="submit" value="Entrar" name="entrar">
+        <input type="submit" value="Entrar" name="entrar" class="c-boton">
     </form>
