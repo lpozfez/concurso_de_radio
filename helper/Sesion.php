@@ -17,6 +17,7 @@ class Sesion
 
     public static function existe(string $clave)
     {
+        
         if(isset($_SESSION[$clave])){
             return true;
         }else{

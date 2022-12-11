@@ -24,18 +24,23 @@ class UsuarioRepositorio{
         }
     }
 
-    public static function getusuario($nombre){
+    public static function getusuario($id){
         $con=Conexion::getConexion();
-
+        $sql="SELECT * from user WHERE identificativo like :id";
         try{
-            
-            //ejecutamos select
-            $registros=$con->query("SELECT * from `user` WHERE nombreUser LIKE $nombre");
-            //devuelve un objeto
-            while($usu=$registros->fetch(PDO::FETCH_OBJ)){
-                return $usu;
+            $resultado=$con->prepare($sql);
+            $resultado->bindParam(":id",$id);
+            $resultado->execute();
+            $registro=$resultado->fetch(PDO::FETCH_OBJ);
+            if($registro){
+                $usuario=new Usuario;
+                //($id,$nombre,$apellidos,$email,$pass,$latitud,$longitud,$imagen64)
+                $usuario->setAll($registro->identificativo,$registro->nombreUser,$registro->apellidos,$registro->email,$registro->password,$registro->latitud,$registro->longitud,$registro->imagen);
+                return $usuario;
+            }else{
+                echo "error";
             }
-    
+            
         }catch(PDOException $p){
             echo $p;
         }

@@ -7,16 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Asociación de radioaficionados</title>
     <link rel="stylesheet" href=".\css\estilos\main.css">
-    
-    
+    <script src="js\login.js"></script>
 </head>
 
 
 
 <body>
     <?php
-        if(!($_GET['menu'] == "login")){
-            require_once './Vistas/Principal/miheader.php';
+        Sesion::iniciar();
+        if(Sesion::existe('id')==true && !($_GET['menu'] == "login")){
+            require_once './Vistas/Principal/headerLogueado.php';
+        }elseif(!($_GET['menu'] == "login")){
+            require_once './Vistas/Principal/headerSinLogin.php';
         }
     ?>
 
@@ -33,8 +35,5 @@
             require_once './Vistas/Principal/mifooter.php';
         }
     ?>
-
 </body>
-
-
 </html>

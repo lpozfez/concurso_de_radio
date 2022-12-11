@@ -1,7 +1,7 @@
 .c-formulario{
 
     width: 500px;
-    height: auto;
+    height: 50%;
     background-color: rgb(241, 247, 241, 0.6);
     padding: 20px;
 
@@ -60,4 +60,6 @@
     border-color: $enfasis;
 }
 
-
+.c-formulario input:required{
+    
+}

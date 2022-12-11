@@ -5,12 +5,9 @@
         </a>
         <ul class="c-menu__item">
             <li class="c-menu__item"><a href="#">Ganadores anteriores</a></li>
-            <li class="c-menu__item"><a href="#">Consursos</a></li>
-            <li class="c-menu__item"><a href="?menu=registro">Unirme</a></li>
+            <li class="c-menu__item"><a href="?menu=concursos">Consursos</a></li>
+            <li id="unirme" class="c-menu__item"><a href="?menu=registro">Unirme</a></li>
         </ul>
-        <a href="#">
-            <img src="css\imagenes\iconos\logout.png" alt="">
-        </a>
         <a href="?menu=login">
             <img src="css\imagenes\iconos\login.png" alt="">
         </a>

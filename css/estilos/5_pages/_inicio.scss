@@ -1,0 +1,25 @@
+.c-inicio{
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+
+    background-color: rgb(241, 247, 241, 0.6);
+
+    border-radius: 5px;
+
+}
+
+.c-inicio p{
+    margin: 15px;
+    font-size: 18px;
+}
+
+.c-inicio h1{
+    font-size: 30px;
+    color: $primario;
+}

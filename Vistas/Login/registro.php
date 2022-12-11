@@ -17,10 +17,10 @@ if(isset($_POST['registrar'])){
     $usuario=new Usuario();
     $usuario->setAll($id,$name,$ap,$email,$pass,$lat,$long,$img64);
     
-    if(isset($usuario) && !empty($usuario)){
+    if(isset($id) && !empty($id)){
         //Abrimos la sesión y le asignamos el identificador del usuario
         Sesion::iniciar();
-        Sesion::escribir('nombre',$name);
+        Sesion::escribir('id',$id);
         
         //Añadimos el usuario a la BD
         UsuarioRepositorio::addUsuario($usuario);

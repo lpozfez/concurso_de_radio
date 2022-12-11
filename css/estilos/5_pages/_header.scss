@@ -3,7 +3,6 @@ header{
     background-color: $primario;
     height: 100px;
     color: $secundario;
-    
 }
 
 #logo{
@@ -15,3 +14,7 @@ header a{
     text-decoration: none;
     color: $secundario;
 }
+/*
+header a .logout{
+    visibility: hidden;
+}*/
