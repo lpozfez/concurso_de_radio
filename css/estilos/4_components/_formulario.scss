@@ -18,6 +18,11 @@
     &--registro{
         height: 450px;
     }
+    &__radio{
+        width: 20px;
+        height: 20px;
+        margin-bottom: 5px;
+    }
 }
 
 .c-formulario h1{
@@ -51,11 +56,11 @@
     border-radius: 5px;
 }
 
-.c-formulario input:hover:not([type="submit"]){
+.c-formulario input:hover:not([type="submit"],[type="radio"]){
     box-shadow: 0 5px 15px $primario;
 }
 
-.c-formulario input:focus:not([type="submit"]){
+.c-formulario input:focus:not([type="submit"],[type="radio"]){
     box-shadow: 0 5px 15px $primario;
     border-color: $enfasis;
 }

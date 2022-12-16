@@ -1,14 +1,14 @@
 <?php
 class Usuario{
-    private $id;
-    private $nombre;
-    private $apellidos;
-    private $email;
-    private $pass;
-    private $latitud;
-    private $longitud;
-    private $imagen;
-    private $rol="usuario";
+    public $id;
+    public $nombre;
+    public $apellidos;
+    public $email;
+    public $pass;
+    public $latitud;
+    public $longitud;
+    public $imagen;
+    public $rol="usuario";
 
     public function setAll($id,$nombre,$apellidos,$email,$pass,$latitud,$longitud,$imagen64){
         $this->id=$id;

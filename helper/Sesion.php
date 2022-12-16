@@ -3,7 +3,9 @@ class Sesion
 {
     public static function iniciar()
     {
-        session_start();
+        if(!isset($_SESSION)){
+            session_start();
+        }
     }
 
     public static function leer(string $clave)
@@ -17,7 +19,6 @@ class Sesion
 
     public static function existe(string $clave)
     {
-        
         if(isset($_SESSION[$clave])){
             return true;
         }else{

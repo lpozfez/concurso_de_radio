@@ -12,19 +12,37 @@ if(isset($_POST['registrar'])){
     $long=$validar->limpiaDatos($_POST['longitud']);
     $img64=Imagenes::imgA64($_FILES['foto']);
     $pass=$validar->limpiaDatos($_POST['contrasenia']);
-
-    //Creamos el usuario
-    $usuario=new Usuario();
-    $usuario->setAll($id,$name,$ap,$email,$pass,$lat,$long,$img64);
     
-    if(isset($id) && !empty($id)){
-        //Abrimos la sesión y le asignamos el identificador del usuario
-        Sesion::iniciar();
-        Sesion::escribir('id',$id);
+    //Coprobamos si el usuario existe
+    if(!UsuarioRepositorio::getusuario($id)){
+        //Creamos el usuario
+        $usuario=new Usuario();
+        $usuario->setAll($id,$name,$ap,$email,$pass,$lat,$long,$img64);
         
-        //Añadimos el usuario a la BD
-        UsuarioRepositorio::addUsuario($usuario);
-    }   
+
+        if(!Sesion::existe('id') && isset($id) && !empty($id)){
+            //Abrimos la sesión y le asignamos el identificador del usuario
+            Sesion::escribir('id',$id);
+            Sesion::escribir('user',$name);
+            Sesion::escribir('rol',$rol);
+            //Añadimos el usuario a la BD
+            
+                if(UsuarioRepositorio::addUsuario($usuario)){
+                    header("Location:?menu=inicio.php");
+                }
+        
+        }else{
+            if(Sesion::existe('rol')&& $_SESSION['rol']=='admin'){
+                $rol=$_POST['rol'];
+                $usuario->setRol($rol);
+                if(UsuarioRepositorio::addUsuario($usuario)){
+                    header("Location:?menu=registro.php");
+                }
+            }
+        }
+    }else{
+        echo 'EL USUARIO YA EXISTE';
+    }
 }
 
 ?>
@@ -65,6 +83,18 @@ if(isset($_POST['registrar'])){
                 <label for="contrasenia">Contraseña:</label>
                 <input type="password" name="contrasenia" id="contrasenia"/>
             </li>
+            <?php
+                if(Sesion::existe('rol')&& $_SESSION['rol']=='admin'){
+                    echo'
+                    <li><label for="rol">Rol:</label><br></li>
+                    <li class="c-formulario__radio">
+                        <input type="radio" id="admin" name="rol" value="admin"><br>
+                        <label for="admin">Administrador</label>
+                        <input type="radio" id="usu" name="rol" value="usuario">
+                        <label for="usu">Normal</label>
+                    </li>';
+                }
+            ?>
             <li id="botonCentral">
                 <input type="submit" value="Registrarme" name="registrar"  class="c-boton">
             </li>

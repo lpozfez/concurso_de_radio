@@ -7,8 +7,8 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == "login") {
         require_once './Vistas/Login/login.php';
     }
-    if ($_GET['menu'] == "cerrarsesion") {
-        require_once './Vistas/Login/cerrarsesion.php';
+    if ($_GET['menu'] == "logout") {
+        require_once './Vistas/Login/logout.php';
      
     }
     if ($_GET['menu'] == "concursos") {
@@ -18,8 +18,8 @@ if (isset($_GET['menu'])) {
         require_once './Vistas/Login/registro.php';
      
     }
-    if ($_GET['menu'] == "listadovacunas") {
-        require_once './Vistas/Mantenimiento/listadovacunas.php';
+    if ($_GET['menu'] == "participantes") {
+        require_once './Vistas/Mantenimiento/participantes.php';
     }
 }else{
     require_once './Vistas/inicio.php';

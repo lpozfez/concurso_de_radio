@@ -13,7 +13,10 @@ class Login
 
     public static function UsuarioEstaLogueado()
     {
-        
+        Session:iniciar();
+        if(Session::existe['id']){
+
+        }
     }
 }
 

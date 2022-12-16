@@ -8,17 +8,15 @@
     <title>Asociación de radioaficionados</title>
     <link rel="stylesheet" href=".\css\estilos\main.css">
     <script src="js\login.js"></script>
+    <script src="js\participantes.js"></script>
 </head>
 
 
 
 <body>
     <?php
-        Sesion::iniciar();
-        if(Sesion::existe('id')==true && !($_GET['menu'] == "login")){
-            require_once './Vistas/Principal/headerLogueado.php';
-        }elseif(!($_GET['menu'] == "login")){
-            require_once './Vistas/Principal/headerSinLogin.php';
+        if(!($_GET['menu'] == "login")){
+            require_once './Vistas/Principal/miheader.php';
         }
     ?>
 

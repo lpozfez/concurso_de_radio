@@ -3,19 +3,19 @@ if(isset($_POST['entrar'])){
     $id=$_POST['id'];
     $passworld=$_POST['pass'];
     $usuRepo=UsuarioRepositorio::getusuario($id);
-    var_dump ($usuRepo);
     $idUsu=$usuRepo->getId();
     $passUsu=$usuRepo->getPass();
+    $rolUsu=$usuRepo->getRol();
     if($id===$idUsu && $passUsu===$passworld){
         Sesion::iniciar();
         Sesion::escribir('id',$id);
         Sesion::escribir('user',$usuRepo->getNombre());
         Sesion::escribir('pass',$passUsu);
-        header('Location:?menu=inicio');
+        Sesion::escribir('rol',$rolUsu);
+        header('Location:?menu=consursos');
     }
 }
 ?>
-
     <form action="?menu=login" method="post" class="c-formulario">
         <h1>Login</h1>
         <label for="id">Identificador:</label>

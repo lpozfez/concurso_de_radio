@@ -2,23 +2,23 @@
 //crear para mostrarlos con Silverio listados https://www.netveloper.com/paginacion-de-registros-desde-mysql
 
 class UsuarioRepositorio{
-    
-
 
     public static function getUsuarios(){
         $con=Conexion::getConexion();
 
         try{
-            $usuarios=[];
             //ejecutamos select
             $resultado=$con->query("SELECT * from `user`");
-            $i=0;
-            while ($registro = $resultado->fetch(PDO::FETCH_OBJ)) {
-                $usuarios.push($registro);
-                $i=$i++;
+            $registro = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            $usuario=[];
+            $usuarios=[];
+            for($i=0;$i<sizeof($registro);$i++){
+                for($j=0;$j<sizeof($registro);$j++){
+                    array_push($usuario,$registro[$j]);
+                }
+                array_push($usuarios,$usuario[$i]);
             }
-            return $i;         
-    
+            return $usuarios;         
         }catch(PDOException $p){
             echo $p;
         }
@@ -36,9 +36,10 @@ class UsuarioRepositorio{
                 $usuario=new Usuario;
                 //($id,$nombre,$apellidos,$email,$pass,$latitud,$longitud,$imagen64)
                 $usuario->setAll($registro->identificativo,$registro->nombreUser,$registro->apellidos,$registro->email,$registro->password,$registro->latitud,$registro->longitud,$registro->imagen);
+                $usuario->setRol($registro->rol);
                 return $usuario;
             }else{
-                echo "error";
+                echo false;
             }
             
         }catch(PDOException $p){
@@ -58,6 +59,16 @@ class UsuarioRepositorio{
         }
     }
 
+    public static function borraUsuarioId($id){
+        $con=Conexion::getConexion();
+        try{
+            $resultados=$con->exec("DELETE from `user` WHERE `identificativo`='$id'");
+            return $resultados;
+        }catch(PDOException $p){
+            echo $p;
+        }
+    }
+
     public static function modificaUsuario(Usuario $usuario){
         $con=Conexion::getConexion();
 
@@ -65,42 +76,43 @@ class UsuarioRepositorio{
         try{
             $resultados=$con->exec("UPDATE `user` SET  nombre=:nombre, apellidos=:apellidos, email=:email,pass=:pass, localizador:localizador, rol:rol, imagen:imagen WHERE id=$id");
             return $resultados;
-        }catch(e){
-            echo e;
+        }catch(PDOException $p){
+            echo $p;
         }
     }
 
     public static function addUsuario(Usuario $usuario){
         $con=Conexion::getConexion();
         //sentencia SQL
-        $anadir="INSERT INTO `user` (`identificativo`, `nombreUser`,`apellidos`,`email`,`password`,`latitud`,`longitud`,`rol`,`imagen`) VALUES(:identificativo,:nombre,:apellidos,:email,:pass, :latitud, :longitud,:rol,:imagen)";
-        $consulta=$con->prepare($anadir);
-
+        $sql="INSERT INTO `user` (`identificativo`, `nombreUser`,`apellidos`,`email`,`rol`,`latitud`,`longitud`,`imagen`,`password`) VALUES(:identificativo,:nombre,:apellidos,:email,:rol, :latitud, :longitud,:imagen,:pass)";
+        //Añadimos la consulta al prepare
+        $consulta=$con->prepare($sql);
+        //recogemos los datos
         $id=$usuario->getId();
         $nom=$usuario->getNombre();
         $aps=$usuario->getApellidos();
         $email=$usuario->getEmail();
         $pass=$usuario->getPass();
+        $rol=$usuario->getRol();
         $lat=$usuario->getLatitud();
         $long=$usuario->getLongitud();
-        $rol=$usuario->getRol();
         $foto=$usuario->getImagen();
-
+        //Asignamos los valores 
         try{
             $consulta->bindParam(":identificativo",$id);
             $consulta->bindParam(":nombre",$nom);
             $consulta->bindParam(":apellidos",$aps);
             $consulta->bindParam(":email",$email);
-            $consulta->bindParam(":pass",$pass);
+            $consulta->bindParam(":rol",$rol);
             $consulta->bindParam(":latitud",$lat);
             $consulta->bindParam(":longitud",$long);
-            $consulta->bindParam(":rol",$rol);
             $consulta->bindParam(":imagen",$foto);
-
+            $consulta->bindParam(":pass",$pass);
+            //ejecutamos la consulta
             $consulta->execute();
-
-        }catch(e){
-            echo e;
+            return true;
+        }catch(PDOException $p){
+            echo $p;
         }
     }
 

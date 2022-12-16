@@ -26,9 +26,17 @@ class Imagenes{
             }
         }
 
-    public static function pasarDe64($imagen64){
-        $imagen=base64_decode($imagen64);
-        return $imagen;
+    public static function pasarDe64($codigoen64){
+        //quitamos data:image/png;
+        $cog=explode(';', $codigoen64);
+        $cod=explode(',', $cog);
+        $imagen=base64_decode($cod);
+        $imagen=imageCreateFromString($imagen);
+        if($imagen!==false){
+            return imagepng($imagen, "mi_imagen.png");
+        }else{
+            return false;
+        }
     }
 
 }
