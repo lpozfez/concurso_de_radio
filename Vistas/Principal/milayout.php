@@ -9,6 +9,7 @@
     <link rel="stylesheet" href=".\css\estilos\main.css">
     <script src="js\login.js"></script>
     <script src="js\participantes.js"></script>
+    <script src="js\carrusel.js"></script>
 </head>
 
 

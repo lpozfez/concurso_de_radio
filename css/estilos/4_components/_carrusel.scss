@@ -1,0 +1,19 @@
+.c-carrusel{
+    width: 95%;
+    height: 60%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-carrusel img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.c-carrusel h1{
+    position: absolute;
+    color: $secundario;
+}

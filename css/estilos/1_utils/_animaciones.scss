@@ -1,0 +1,9 @@
+.diapositiva{
+    animation-name: diapositiva;
+    animation-duration: 1.5s;
+}
+
+@keyframes diapositiva{
+    from{opacity: .4;}
+    to{opacity: 1;}
+}

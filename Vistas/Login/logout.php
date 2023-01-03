@@ -1,5 +1,5 @@
 <?php
 //session_start();
 session_destroy();
-header("Location:?menu=inicio.php");
+header("Location:?menu=inicio");
 ?>

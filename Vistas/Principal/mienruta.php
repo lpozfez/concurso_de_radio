@@ -14,6 +14,9 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == "concursos") {
         require_once './Vistas/Mantenimiento/concursos.php';
     }
+    if ($_GET['menu'] == "concursosActivos") {
+        require_once './Vistas/Mantenimiento/concursosActivos.php';
+    }
     if ($_GET['menu'] == "registro") {
         require_once './Vistas/Login/registro.php';
      

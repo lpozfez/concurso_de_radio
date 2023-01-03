@@ -19,24 +19,28 @@ if(isset($_POST['registrar'])){
         $usuario=new Usuario();
         $usuario->setAll($id,$name,$ap,$email,$pass,$lat,$long,$img64);
         
-
         if(!Sesion::existe('id') && isset($id) && !empty($id)){
             //Abrimos la sesión y le asignamos el identificador del usuario
             Sesion::escribir('id',$id);
             Sesion::escribir('user',$name);
             Sesion::escribir('rol',$rol);
+
+            //Mandamos el email de confirmación al usuario 
+
+
             //Añadimos el usuario a la BD
-            
-                if(UsuarioRepositorio::addUsuario($usuario)){
-                    header("Location:?menu=inicio.php");
-                }
+            if(UsuarioRepositorio::addUsuario($usuario)){
+                echo '<p>Registro completado</p>';
+                //header("Location:?menu=inicio");
+            }
         
         }else{
             if(Sesion::existe('rol')&& $_SESSION['rol']=='admin'){
                 $rol=$_POST['rol'];
                 $usuario->setRol($rol);
                 if(UsuarioRepositorio::addUsuario($usuario)){
-                    header("Location:?menu=registro.php");
+                    echo '<h1>Usuario añadido</h1>';
+                    header("Location:?menu=registro");
                 }
             }
         }
@@ -53,27 +57,27 @@ if(isset($_POST['registrar'])){
         <ul>
             <li>
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre"/>
+                <input type="text" name="nombre" id="nombre" required/>
             </li>
             <li>
                 <label for="apellidos">Apellidos:</label>
-                <input type="text" name="apellidos" id="apellidos"/>
+                <input type="text" name="apellidos" id="apellidos" required/>
             </li>
             <li>
                 <label for="mail">Email:</label>
-                <input type="text" name="mail" id="mail"/>
+                <input type="text" name="mail" id="mail" placeholder="miemail@gmail.com" required/>
             </li>
             <li>
                 <label for="identificador">Identificador:</label>
-                <input type="text" name="identificador" id="identificador" maxlength="6"/>
+                <input type="text" name="identificador" id="identificador"  maxlength="6"  required/>
             </li>
             <li>
                 <label for="latitud">Latitud:</label>
-                <input type="number" name="latitud" id="latitud" step="0.01"/>
+                <input type="number" name="latitud" id="latitud" step="0.01" required/>
             </li>
             <li>
                 <label for="longitud">Longitud:</label>
-                <input type="number" name="longitud" id="longitud" step="0.01"/>
+                <input type="number" name="longitud" id="longitud" step="0.01" required/>
             </li>
             <li>
                 <label for="foto">Foto:</label>
@@ -81,16 +85,16 @@ if(isset($_POST['registrar'])){
             </li>
             <li>
                 <label for="contrasenia">Contraseña:</label>
-                <input type="password" name="contrasenia" id="contrasenia"/>
+                <input type="password" name="contrasenia" id="contrasenia" required/>
             </li>
             <?php
                 if(Sesion::existe('rol')&& $_SESSION['rol']=='admin'){
                     echo'
                     <li><label for="rol">Rol:</label><br></li>
                     <li class="c-formulario__radio">
-                        <input type="radio" id="admin" name="rol" value="admin"><br>
+                        <input type="radio" id="admin" name="rol" value="admin" required><br>
                         <label for="admin">Administrador</label>
-                        <input type="radio" id="usu" name="rol" value="usuario">
+                        <input type="radio" id="usu" name="rol" value="usuario" required>
                         <label for="usu">Normal</label>
                     </li>';
                 }

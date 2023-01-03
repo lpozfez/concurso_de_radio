@@ -200,6 +200,30 @@ table {
   font-size: getFontSize(2)px;
 }
 
+.diapositiva {
+  -webkit-animation-name: diapositiva;
+          animation-name: diapositiva;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+}
+
+@-webkit-keyframes diapositiva {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes diapositiva {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .g-icono {
   width: 20px;
   height: 20px;
@@ -318,6 +342,11 @@ table {
   border-width: 0px;
   border-radius: 5px;
 }
+.c-formulario input:not([type=submit]):invalid {
+  border-color: rgb(238, 53, 53);
+  border-width: 1px;
+  border-style: solid;
+}
 
 .c-formulario input:hover:not([type=submit], [type=radio]) {
   -webkit-box-shadow: 0 5px 15px #7B5D57;
@@ -328,6 +357,10 @@ table {
   -webkit-box-shadow: 0 5px 15px #7B5D57;
           box-shadow: 0 5px 15px #7B5D57;
   border-color: #408d9c;
+}
+
+.c-formulario a {
+  font-size: 11px;
 }
 
 .c-boton {
@@ -341,6 +374,9 @@ table {
   color: #E5CBC0;
   -webkit-box-shadow: 0 4px 6px hsl(0deg, 0%, 0.2%);
           box-shadow: 0 4px 6px hsl(0deg, 0%, 0.2%);
+}
+.c-boton--tarjetas {
+  background-color: #F5F5EF;
 }
 
 .c-boton:hover {
@@ -409,6 +445,19 @@ table {
 .c-tarjeta__texto {
   font-size: 13px;
 }
+.c-tarjeta--horizontal {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 80%;
+  height: 80%;
+}
+
+.c-tarjeta:hover {
+  -webkit-box-shadow: 0 15px 35px #408d9c;
+          box-shadow: 0 15px 35px #408d9c;
+}
 
 .c-tabla {
   width: 80%;
@@ -447,6 +496,31 @@ table {
 .c-columna {
   width: auto;
   height: 10px;
+}
+
+.c-carrusel {
+  width: 95%;
+  height: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-carrusel img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.c-carrusel h1 {
+  position: absolute;
+  color: #E5CBC0;
 }
 
 body {
@@ -530,35 +604,33 @@ main {
 }
 
 .c-inicio {
-  width: 80%;
-  height: 80%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 10% 50% 40%;
+  grid-template-areas: "titulo titulo titulo" "tarjeta tarjeta tarjeta" "carrusel carrusel carrusel";
+  grid-gap: 10px 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-line-pack: distribute;
-      align-content: space-around;
-  background-color: rgba(241, 247, 241, 0.6);
-  border-radius: 5px;
-}
-
-.c-inicio p {
-  margin: 15px;
-  font-size: 18px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .c-inicio h1 {
   font-size: 30px;
-  color: #7B5D57;
+  color: #57413d;
+  grid-area: titulo;
+  text-align: center;
+}
+
+.c-inicio c-tarjeta {
+  grid-area: tarjeta;
+}
+
+.c-inicio c-carrusel {
+  grid-area: carrusel;
 }
 
 .c-concursos {

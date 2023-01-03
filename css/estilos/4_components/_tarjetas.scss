@@ -15,6 +15,7 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
+
     
     &__imagen{
         width: 100%;
@@ -34,4 +35,17 @@
     &__texto{
         font-size: 13px;
     }
+
+
+    &--horizontal{
+        flex-direction: row;
+        width: 80%;
+        height: 80%;
+    }
 }
+
+.c-tarjeta:hover{
+    box-shadow: 0 15px 35px $enfasis; 
+}
+
+
